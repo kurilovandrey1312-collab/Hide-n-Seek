@@ -10,60 +10,65 @@
 <body>
 
 <div id="screen-login" class="screen">
-    <h1>P2P Прятки</h1>
+    <h1 style="color: #f44336; margin-bottom: 20px;">GPS HIDE & SEEK</h1>
     <input type="text" id="playerName" placeholder="Твое имя..." maxlength="15">
     
     <div class="menu-block">
         <h3>Создать игру</h3>
-        <button onclick="createGame()" class="btn-primary">Стать Хостом</button>
+        <button onclick="createGame()" class="btn-primary">СТАТЬ ХОСТОМ</button>
     </div>
     
     <div class="menu-block">
         <h3>Присоединиться</h3>
-        <input type="text" id="joinId" placeholder="ID комнаты...">
-        <button onclick="joinGame()">Подключиться</button>
+        <input type="text" id="joinId" placeholder="ID комнаты (от хоста)...">
+        <button onclick="joinGame()" class="btn-secondary">ПОДКЛЮЧИТЬСЯ</button>
     </div>
 </div>
 
 <div id="screen-lobby" class="screen hidden">
-    <h2>Лобби (<span id="playerCount">0</span>/10)</h2>
-    <p>ID Комнаты: <strong id="roomIdDisplay" style="color: #4CAF50;">...</strong></p>
+    <h2>ЛОББИ (<span id="playerCount">0</span>/10)</h2>
+    <p>ID Комнаты: <strong id="roomIdDisplay" style="color: #4CAF50; letter-spacing: 2px;">ПОЛУЧЕНИЕ...</strong></p>
     <ul id="playersList"></ul>
     
     <div id="hostControls" class="hidden">
-        <h3>Настройки</h3>
+        <hr style="margin: 15px 0; border: 0; border-top: 1px solid #444;">
         <label>Ловец: <select id="setSeeker"><option value="random">Случайно</option></select></label><br>
-        <label>Прятки (сек): <input type="number" id="setHide" min="30" max="600" value="60"></label><br>
-        <label>Игра (мин): <input type="number" id="setGame" min="10" max="120" step="5" value="30"></label><br>
-        <label>Последняя Охота (мин): <input type="number" id="setLastHunt" min="5" max="30" value="5"></label><br>
+        <label>Время прятаться: <input type="number" id="setHide" min="30" max="600" value="60"> сек</label><br>
+        <label>Длительность: <input type="number" id="setGame" min="10" max="120" step="5" value="30"> мин</label><br>
+        <label>Последняя охота: <input type="number" id="setLastHunt" min="5" max="30" value="5"> мин</label><br>
         <button class="btn-start" onclick="startGame()">ПУСК</button>
     </div>
-    <div id="clientWaiting" class="hidden">Ожидание запуска хостом...</div>
+    <div id="clientWaiting" class="hidden">Ожидание команды хоста...</div>
 </div>
 
 <div id="screen-countdown" class="screen hidden">
-    <h1 id="countdownText">ВРЕМЯ ПРЯТАТЬСЯ!</h1>
-    <h2 id="countdownTimer">60</h2>
+    <h1 id="countdownText">БЕГИ И ПРЯЧЬСЯ!</h1>
+    <h2 id="countdownTimer" style="font-size: 80px;">60</h2>
 </div>
 
 <div id="screen-game-hider" class="screen hidden">
-    <img id="dangerImg" src="files/danger_0.png" alt="Danger">
-    <h2 id="dangerText">Всё спокойно...</h2>
+    <div id="dangerContainer">
+        <img id="dangerImg" src="files/danger_0.png" alt="Danger">
+    </div>
+    <h2 id="dangerText">ДИСТАНЦИЯ: <span id="distVal">--</span>м</h2>
 </div>
 
 <div id="screen-game-seeker" class="screen hidden">
-    <h2>Радар Ловца</h2>
+    <h2>РАДАР ЛОВЦА</h2>
     <div id="targetsList"></div>
 </div>
 
 <div id="screen-map" class="screen hidden">
     <div id="map"></div>
+    <div id="mapOverlay" style="position:absolute; top:10px; left:50px; z-index:1000; background:rgba(0,0,0,0.7); padding:5px; border-radius:5px;">
+        РЕЖИМ ПРИЗРАКА
+    </div>
 </div>
 
 <div id="screen-end" class="screen hidden">
-    <h1 id="endResult"></h1>
-    <h3 id="endSubtext">Возвращайтесь на точку старта!</h3>
-    <button onclick="location.reload()" style="margin-top: 20px;">В главное меню</button>
+    <h1 id="endResultText"></h1>
+    <p id="endSubtext">Возвращайтесь на точку старта!</p>
+    <button onclick="location.reload()" style="background:#555; width:200px;">В МЕНЮ</button>
 </div>
 
 <script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
@@ -71,4 +76,3 @@
 <script src="app.js"></script>
 </body>
 </html>
-
