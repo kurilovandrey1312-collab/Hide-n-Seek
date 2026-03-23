@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>P2P GPS Прятки</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+
+<div id="screen-login" class="screen">
+    <h1>P2P Прятки</h1>
+    <input type="text" id="playerName" placeholder="Твое имя..." maxlength="15">
+    
+    <div class="menu-block">
+        <h3>Создать игру</h3>
+        <button onclick="createGame()" class="btn-primary">Стать Хостом</button>
+    </div>
+    
+    <div class="menu-block">
+        <h3>Присоединиться</h3>
+        <input type="text" id="joinId" placeholder="ID комнаты...">
+        <button onclick="joinGame()">Подключиться</button>
+    </div>
+</div>
+
+<div id="screen-lobby" class="screen hidden">
+    <h2>Лобби (<span id="playerCount">0</span>/10)</h2>
+    <p>ID Комнаты: <strong id="roomIdDisplay" style="color: #4CAF50;">...</strong></p>
+    <ul id="playersList"></ul>
+    
+    <div id="hostControls" class="hidden">
+        <h3>Настройки</h3>
+        <label>Ловец: <select id="setSeeker"><option value="random">Случайно</option></select></label><br>
+        <label>Прятки (сек): <input type="number" id="setHide" min="30" max="600" value="60"></label><br>
+        <label>Игра (мин): <input type="number" id="setGame" min="10" max="120" step="5" value="30"></label><br>
+        <label>Последняя Охота (мин): <input type="number" id="setLastHunt" min="5" max="30" value="5"></label><br>
+        <button class="btn-start" onclick="startGame()">ПУСК</button>
+    </div>
+    <div id="clientWaiting" class="hidden">Ожидание запуска хостом...</div>
+</div>
+
+<div id="screen-countdown" class="screen hidden">
+    <h1 id="countdownText">ВРЕМЯ ПРЯТАТЬСЯ!</h1>
+    <h2 id="countdownTimer">60</h2>
+</div>
+
+<div id="screen-game-hider" class="screen hidden">
+    <img id="dangerImg" src="files/danger_0.png" alt="Danger">
+    <h2 id="dangerText">Всё спокойно...</h2>
+</div>
+
+<div id="screen-game-seeker" class="screen hidden">
+    <h2>Радар Ловца</h2>
+    <div id="targetsList"></div>
+</div>
+
+<div id="screen-map" class="screen hidden">
+    <div id="map"></div>
+</div>
+
+<div id="screen-end" class="screen hidden">
+    <h1 id="endResult"></h1>
+    <h3 id="endSubtext">Возвращайтесь на точку старта!</h3>
+    <button onclick="location.reload()" style="margin-top: 20px;">В главное меню</button>
+</div>
+
+<script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
+

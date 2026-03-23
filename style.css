@@ -1,0 +1,37 @@
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
+body { background: #111; color: #fff; overflow: hidden; }
+.screen { position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.hidden { display: none !important; }
+
+.menu-block { background: #222; padding: 20px; margin: 10px; border-radius: 10px; text-align: center; width: 100%; max-width: 300px; }
+button { padding: 15px 20px; margin: 10px 0; font-size: 16px; background: #444; color: #fff; border: none; border-radius: 8px; width: 100%; cursor: pointer;}
+.btn-primary { background: #4CAF50; font-weight: bold; }
+.btn-start { background: #d32f2f; font-weight: bold; font-size: 20px;}
+input, select { margin-bottom: 10px; padding: 10px; background: #333; color: white; border: 1px solid #555; width: 100%; border-radius: 5px;}
+
+/* Анимация опасности */
+#dangerImg { width: 80vw; max-width: 300px; transition: 0.3s; }
+.shake { animation: shake 0.2s cubic-bezier(.36,.07,.19,.97) both infinite; }
+
+@keyframes shake {
+  0%, 100% { transform: translate(1px, 1px) rotate(0deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+}
+
+/* Радар */
+.target-card { background: #222; padding: 15px; margin: 10px 0; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; width: 90vw; max-width: 400px; }
+.btn-kill { background: transparent; width: 60px; height: 60px; padding: 0; opacity: 0.3; pointer-events: none; transition: 0.2s; }
+.btn-kill img { width: 100%; height: 100%; object-fit: contain;}
+.btn-kill.active { opacity: 1; pointer-events: auto; background: rgba(255,0,0,0.2); border-radius: 50%; }
+
+/* Карта */
+#map { width: 100vw; height: 100vh; position: absolute; top:0; left:0; z-index: 10;}
+.map-icon { background: transparent; border: none; }
+.map-icon img { width: 40px; height: 40px; object-fit: contain; }
+.flip-horizontal { transform: scaleX(-1); }
+
+/* Эндскрин */
+.win-blue { color: #2196F3; font-size: 40px; text-shadow: 0 0 15px #2196F3; }
+.win-red { color: #f44336; font-size: 40px; text-shadow: 0 0 15px #f44336; }
